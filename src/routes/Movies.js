@@ -1,6 +1,6 @@
 function Movies() {
   return (
-    <div>Movies</div>
+    <div>List of Movies</div>
   );
 }
 
