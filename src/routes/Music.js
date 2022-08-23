@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-function Movie() {
+function Music() {
   const {id} = useParams();
 
   return (
@@ -8,4 +8,4 @@ function Movie() {
   );
 }
 
-export default Movie;
+export default Music;

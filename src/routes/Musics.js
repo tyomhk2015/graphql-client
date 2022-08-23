@@ -1,31 +1,30 @@
-import { gql, useApolloClient } from "@apollo/client";
-import { useEffect, useState } from "react";
+import style from './Musics.module.scss';
+import { gql, useQuery } from "@apollo/client";
 
-function Movies() {
-  const [musics, setMusics] = useState(null);
-  const client = useApolloClient();
+const ALL_MUSICS = gql`
+  query getAllMusics {
+    allMusics {
+      id
+      title
+      reading
+      image
+    }
+  }
+`;
+
+function Musics() {
   // https://new.chunithm-net.com/chuni-mobile/html/mobile/img/
-  useEffect(() => {
-    client
-      .query({
-        query: gql`
-          {
-            allMusics {
-              title
-              image
-            }
-          }
-        `,
-      })
-      .then((response) => setMusics(response.data.allMusics));
-  }, [client]);
+  const { data } = useQuery(ALL_MUSICS);
+
+  console.log(data);
 
   return (
     <div>
       List of Musics
-      {musics && musics.map((music, index) => (
-        <li key={`${music.title}${index}`}>
+      {data && data.allMusics.map((music, index) => (
+        <li className={style['music-list']} key={`${music.title}${index}`}>
           <p>{music.title}</p>
+          <p>{music.reading}</p>
           <p>{music.artist}</p>
           <div>
             <img
@@ -39,4 +38,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default Musics;
