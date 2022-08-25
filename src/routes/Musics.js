@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import { Link } from 'react-router-dom';
 
 const ALL_MUSICS = gql`
+  # Remote field
   query getAllMusics {
     allMusics {
       id
